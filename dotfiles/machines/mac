@@ -1,0 +1,2 @@
+export PS1="\[\e[31m\]This Mac\[\e[m\]:\[\e[32m\]\w\[\e[m\]\\$ "
+

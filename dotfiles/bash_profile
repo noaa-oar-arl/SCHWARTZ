@@ -1,0 +1,27 @@
+export EDITOR="vim"
+
+export REPLYTO="cory.r.martin@noaa.gov"
+
+# things for Bash git prompt
+if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
+    GIT_PROMPT_ONLY_IN_REPO=1
+    source $HOME/.bash-git-prompt/gitprompt.sh
+fi
+
+# Add CWD(.) and $HOME/bin to path
+export PATH=".:$HOME/bin:$PATH"
+
+# Make LS look good
+export LSCOLORS="ExGxCxDxBxegedabagaced" # Good for dark background
+
+# Make LESS more attractive
+export LESS="-BFIMRX"
+
+###############################################################
+# Set user-defined aliases
+test -e "${HOME}/.bash_aliases" && source "${HOME}/.bash_aliases"
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+###############################################################
+# Set site specific aliases and functions
+test -e "${HOME}/.bash_site" && source "${HOME}/.bash_site"
