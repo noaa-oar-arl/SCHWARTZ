@@ -19,6 +19,11 @@ export LSCOLORS="ExGxCxDxBxegedabagaced" # Good for dark background
 # Make LESS more attractive
 export LESS="-BFIMRX"
 
+#  Set the number of commands to be maintained in history within a session.
+export HISTSIZE=100
+#  Set the number of commands to be maintained in history across logins.
+export HISTFILESIZE=100
+
 ###############################################################
 # Set user-defined aliases
 test -e "${HOME}/.bash_aliases" && source "${HOME}/.bash_aliases"

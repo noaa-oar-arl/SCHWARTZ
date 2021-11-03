@@ -1,3 +1,5 @@
+export PS1="\[\e[31m\]Hera(\h)\[\e[m\]:\[\e[32m\]\w\[\e[m\]\\$ "
+
 alias qme="squeue -u Cory.R.Martin"
 alias jedienv="source $HOME/env/jedi_20210521.bash && module list && cat $HOME/env/jedi_20210521.bash"
 
