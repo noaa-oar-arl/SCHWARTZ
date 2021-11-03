@@ -1,0 +1,12 @@
+export PS1="\[\e[31m\]\h\[\e[m\]:\[\e[32m\]\w\[\e[m\]\\$ "
+alias qme="squeue -u cmartin"
+export SQUEUE_FORMAT="%.12i %.9P %.25j %.18u %.2t %.10M %.6D %.20R %q"
+
+export NOSCRUB=/work/noaa/da/Cory.R.Martin/noscrub
+export WORK2=/work2/noaa/da/cmartin
+export PTMP=/work/noaa/stmp/Cory.R.Martin/ptmp
+export STMP=/work/noaa/stmp/Cory.R.Martin
+
+alias jedienv="source $HOME/env/jedi_hofx_20211008.bash && module list && cat $HOME/env/jedi_hofx_20211008.bash"
+
+module load git
