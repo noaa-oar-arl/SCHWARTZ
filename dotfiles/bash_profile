@@ -1,3 +1,5 @@
+shopt -s direxpand
+
 export EDITOR="vim"
 
 export REPLYTO="cory.r.martin@noaa.gov"
