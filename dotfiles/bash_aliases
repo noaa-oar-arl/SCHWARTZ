@@ -17,6 +17,9 @@ alias cpf='cp -f'
 alias mvf='mv -f'
 alias rmf='rm -f'
 
+# ls aliases
+alias ls='ls --color'
+
 # NOAA/NCEP Machines
 alias hera='ssh -Y Cory.R.Martin@hera-rsa.princeton.rdhpcs.noaa.gov'
 alias niagara='ssh -Y Cory.R.Martin@niagara-rsa.princeton.rdhpcs.noaa.gov'
