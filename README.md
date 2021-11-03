@@ -1,2 +1,2 @@
 # SCHWARTZ
-Synoptic Collection of handy Work And Research ToolZ
+Synoptic Collection of Handy Work And Research ToolZ
