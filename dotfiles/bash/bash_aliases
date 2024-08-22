@@ -12,13 +12,27 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 
+# Grep color 
+alias grep="grep --color"
+
+# PATH and directory 
+alias dir='ls -l \!*  | more'
+alias path='echo $path'
+
+# history 
+alias h='history'
+
+# Editor aliases
+alias emacs='emacs -nw'
+alias emcas='emacs -nw'
+
 # Aliases to force cp, mv and rm without confirmation
 alias cpf='cp -f'
 alias mvf='mv -f'
 alias rmf='rm -f'
 
 # ls aliases
-alias ls='ls --color'
+alias ls='ls --color=force'
 
 # NOAA/NCEP Machines
 alias hera='ssh -Y Cory.R.Martin@hera-rsa.princeton.rdhpcs.noaa.gov'
