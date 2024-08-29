@@ -12,6 +12,8 @@ alias h='history'
 alias emacs='emacs -nw'
 alias emcas='emacs -nw'
 
+alias q='qstat -u Barry.Baker'
+
 
 export PATH=/home/Cory.R.Martin/local/miniconda3/bin:$PATH:/home/Cory.R.Martin/local/bin
 # useful directory variable
@@ -25,6 +27,7 @@ export STMP3=/scratch2/NCEPDEV/stmp3/$USER
 export STMP4=/scratch1/NCEPDEV/stmp4/$USER
 export GSI=$NOSCRUB/GSI
 export JEDI=$NOSCRUB/JEDI
+
 export SQUEUE_FORMAT="%.12i %.9P %.25j %.18u %.2t %.10M %.6D %.20R %q"
 
 # dirctory aliases
