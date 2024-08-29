@@ -19,7 +19,6 @@ export PATH=/home/Cory.R.Martin/local/miniconda3/bin:$PATH:/home/Cory.R.Martin/l
 # useful directory variable
 export ARL2_DIR=/scratch2/NAGAPE/arl/$USER
 export ARL3_DIR=/scratch3/NAGAPE/arl/$USER
-
 export NOSCRUB_DIR=/scratch1/NCEPDEV/naqfc/$USER
 export STMP1_DIR=/scratch2/NCEPDEV/stmp1/$USER
 export STMP2_DIR=/scratch1/NCEPDEV/stmp2/$USER
