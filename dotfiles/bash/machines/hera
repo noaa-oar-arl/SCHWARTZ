@@ -25,10 +25,12 @@ export STMP1=/scratch2/NCEPDEV/stmp1/$USER
 export STMP2=/scratch1/NCEPDEV/stmp2/$USER
 export STMP3=/scratch2/NCEPDEV/stmp3/$USER
 export STMP4=/scratch1/NCEPDEV/stmp4/$USER
-export GSI=$NOSCRUB/GSI
-export JEDI=$NOSCRUB/JEDI
 
+
+#Other tools 
 export SQUEUE_FORMAT="%.12i %.9P %.25j %.18u %.2t %.10M %.6D %.20R %q"
+export NCVIEWBASE=/scratch1/RDARCH/rda-arl-gpu/Barry.Baker/tools/ncmaps
+export NCVIEWBASE=${HOME}/.ncmaps
 
 # dirctory aliases
 alias crmsave="cd $NOSCRUB"
