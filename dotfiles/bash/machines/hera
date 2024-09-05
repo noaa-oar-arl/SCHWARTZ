@@ -12,8 +12,9 @@ alias h='history'
 alias emacs='emacs -nw'
 alias emcas='emacs -nw'
 
-alias q='qstat -u Barry.Baker'
-
+# Slurm Alias
+alias sq='squeue -u $USER'
+alias sc='scancel -u $USER'
 
 export PATH=/home/Cory.R.Martin/local/miniconda3/bin:$PATH:/home/Cory.R.Martin/local/bin
 # useful directory variable
