@@ -30,6 +30,9 @@ alias cpf='cp -f'
 alias mvf='mv -f'
 alias rmf='rm -f'
 
+# general cleanup of logs and tmp files 
+alias cleanup='rm out err PET* *~ \#*'
+
 # ls aliases
 alias ls='ls --color=force'
 
