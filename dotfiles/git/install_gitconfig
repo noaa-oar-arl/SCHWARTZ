@@ -4,10 +4,8 @@ datestr=`date +"%Y%m%d"`
 
 source .gitconfig
 
-[[ -f $HOME/.bash_site ]] && mv $HOME/.bash_site $HOME/.bash_site-$datestr
-cp machines/$machine $HOME/.bash_site
+sed -i -e 's:gituser:${GITHUB_USERNAME}:g' .gitconfig
 
-# Grab git prompt for bash
-git clone https://github.com/magicmonty/bash-git-prompt $HOME/.bash-git-prompt
+cp .gitconfig ~/
 
 exit 0
