@@ -31,7 +31,7 @@ alias mvf='mv -f'
 alias rmf='rm -f'
 
 # general cleanup of logs and tmp files 
-alias cleanup='rm out err PET* *~ \#*'
+alias cleanup='rm out err PET* *~ \#* 2>/dev/null'
 
 # ls aliases
 alias ls='ls --color=force'
