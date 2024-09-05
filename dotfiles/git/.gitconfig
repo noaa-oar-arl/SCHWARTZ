@@ -1,0 +1,13 @@
+[credential]
+     helper = store --file ~/.git-credentials
+[credential "https://github.com"]
+    username = bbakernoaa
+[url "https://github.com/noaa-oar-arl/"]
+    insteadof = arlgithub
+[url "https://github.com/bbakernoaa/"]
+    insteadof = mygithub
+[url "https://github.com/noaa-emc/"]
+    insteadof = emcgithub
+[user]
+    name = bbakernoaa
+    email = barry.baker@noaa.gov
