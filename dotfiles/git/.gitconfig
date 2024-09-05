@@ -3,11 +3,13 @@
 [credential "https://github.com"]
     username = gitusername
 [url "https://github.com/noaa-oar-arl/"]
-    insteadof = arlgithub
+    insteadof = ARL
 [url "https://github.com/gitusername/"]
-    insteadof = mygithub
+    insteadof = MYGIT
 [url "https://github.com/noaa-emc/"]
-    insteadof = emcgithub
+    insteadof = EMC
+[url "https://github.com/ufs-community/"]
+    insteadof = UFS
 [user]
     name = gitusername
     email = gitemial
