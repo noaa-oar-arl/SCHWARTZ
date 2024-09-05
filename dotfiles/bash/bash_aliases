@@ -42,11 +42,17 @@ export MSU_USER=bbaker
 export HOPPER_USER=bbaker25
 
 alias hera='ssh -Y ${RDHPCS_USER}@hera-rsa.princeton.rdhpcs.noaa.gov'
-alias niagara='ssh -Y ${RDHPCS_USER}@niagara-rsa.princeton.rdhpcs.noaa.gov'
 alias herab='ssh -Y ${RDHPCS_USER}@hera-rsa.boulder.rdhpcs.noaa.gov'
-alias wcoss='ssh -Y ${RDHPCS_USER}@devbastion.ncep.noaa.gov'
 alias heratunnel='ssh -L65352:localhost:65352 -X ${RDHPCS_USER}@hera-rsa.princeton.rdhpcs.noaa.gov'
+alias herabtunnel='ssh -L65352:localhost:65352 -X ${RDHPCS_USER}@hera-rsa.boulder.rdhpcs.noaa.gov'
+alias gaea='ssh -Y ${RDHPCS_USER}@gaea-rsa.princeton.rdhpcs.noaa.gov'
+alias gaeab='ssh -Y ${RDHPCS_USER}@gaea-rsa.boulder.rdhpcs.noaa.gov'
+alias gaeatunnel='ssh -L65352:localhost:65352 -X ${RDHPCS_USER}@gaea-rsa.princeton.rdhpcs.noaa.gov'
+alias gaeabtunnel='ssh -L65352:localhost:65352 -X ${RDHPCS_USER}@gaea-rsa.boulder.rdhpcs.noaa.gov'
+alias niagara='ssh -Y ${RDHPCS_USER}@niagara-rsa.princeton.rdhpcs.noaa.gov'
+alias wcoss='ssh -Y ${RDHPCS_USER}@devbastion.ncep.noaa.gov'
 alias orion='ssh -Y ${MSU_USER}@orion-login.hpc.msstate.edu'
+
 
 # shortcut to source
 alias so="source ~/.bash_profile"
