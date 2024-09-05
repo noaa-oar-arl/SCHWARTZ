@@ -2,13 +2,7 @@
 
 datestr=`date +"%Y%m%d"`
 
-files="
-github_profile
-"
-for file in $files; do
-  [[ -f $HOME/.$file ]] && mv $HOME/.$file $HOME/.$file-$datestr
-  cp $file $HOME/.$file
-done
+source .gitconfig
 
 [[ -f $HOME/.bash_site ]] && mv $HOME/.bash_site $HOME/.bash_site-$datestr
 cp machines/$machine $HOME/.bash_site
