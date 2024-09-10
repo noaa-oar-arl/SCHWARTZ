@@ -2,4 +2,9 @@ usernames:
     rdhpcs: "Barry.Baker"
     hopper: "bbaker25"
     wcoss2: "barry.baker"
+hpc_domains: 
+    hera_princeton: "hera-rsa.princeton.rdhpcs.noaa.gov"
+    hera_boulder: "hera-rsa.boulder.rdhpcs.noaa.gov"
+    gaea_princeton: "gaea-rsa.princeton.rdhpcs.noaa.gov"
+    gaea_boulder: "gaea-rsa.boulder.rdhpcs.noaa.gov"
 
