@@ -1,0 +1,39 @@
+[git]
+username = "bbakernoaa"
+email = "barry.baker@noaa.gov"
+
+[hpc_domains]
+
+## Hera Configuration
+[hpc_domains.hera]
+username = "Barry.Baker"
+port = 53612
+domain = ["hera-rsa.princeton.rdhpcs.noaa.gov", "hera-rsa.boulder.rdhpcs.noaa.gov"]
+
+## Gaea Configuration
+[hpc_domains.gaea]
+username = "Barry.Baker"
+domain = ["gaea-rsa.princeton.rdhpcs.noaa.gov", "gaea-rsa.boulder.rdhpcs.noaa.gov"]
+
+## Hopper Configuration
+[hpc_domains.hopper]
+username = "bbaker25"
+domain = ["hopper.orc.gmu.edu"]
+
+## Aaqest Configuration
+[hpc_domains.aaqest]
+username = "barryb"
+domain = ["aaqest.arl.noaa.gov"]
+
+## Byun Configuration
+[hpc_domains.byun]
+username = "barryb"
+domain = ["byun.arl.noaa.gov"]
+
+Changes made:
+ * Removed unnecessary indentation from the YAML file.
+ * Replaced hpc_domains: with [hpc_domains].
+ * Each domain configuration (hera, gaea, etc.) is now a separate table section with its own heading.
+ * Removed the colon (":") after each domain name within the lists.
+ * Maintained string quotes for the email address.
+This TOML file represents the same information as the original YAML file in a more concise and readable format.
