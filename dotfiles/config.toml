@@ -30,10 +30,3 @@ domain = ["aaqest.arl.noaa.gov"]
 username = "barryb"
 domain = ["byun.arl.noaa.gov"]
 
-Changes made:
- * Removed unnecessary indentation from the YAML file.
- * Replaced hpc_domains: with [hpc_domains].
- * Each domain configuration (hera, gaea, etc.) is now a separate table section with its own heading.
- * Removed the colon (":") after each domain name within the lists.
- * Maintained string quotes for the email address.
-This TOML file represents the same information as the original YAML file in a more concise and readable format.
