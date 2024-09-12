@@ -2,4 +2,4 @@
 rrstat_cyc () { rocotorun -w ${1}.xml -d ${1}.db; rocotostat -w ${1}.xml -d ${1}.db -c ${2}; }
 rrstat () { rocotorun -w ${1}.xml -d ${1}.db; rocotostat -w ${1}.xml -d ${1}.db; }
 
-scancel_all () { squeue -u $USER | awk '{print $1}' | tail -n+2 | xargs scancel; }ls
+scancel_all () { squeue -u $USER | awk '{print $1}' | tail -n+2 | xargs scancel; }
