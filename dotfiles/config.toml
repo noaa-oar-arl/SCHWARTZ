@@ -1,32 +1,50 @@
 [git]
 username = "bbakernoaa"
 email = "barry.baker@noaa.gov"
+hera_key = "fake_key_for_hera"
+gaea_key = "fake_key_for_gaea"
+hopper_key = "fake_key_for_hopper"
+orion_key = "fake_key_for_orion"
+hercules = "fake_key_for_hercules"
+aaqest = "fake_key_for_aaqest"
+byun = "fake_key_for_byun"
 
-[hpc_domains]
+[user_info]
+email = 'barry.baker@noaa.gov'
 
 ## Hera Configuration
-[hpc_domains.hera]
+[hera]
 username = "Barry.Baker"
 port = 53612
 domain = ["hera-rsa.princeton.rdhpcs.noaa.gov", "hera-rsa.boulder.rdhpcs.noaa.gov"]
 
 ## Gaea Configuration
-[hpc_domains.gaea]
+[gaea]
 username = "Barry.Baker"
+port = 40642
 domain = ["gaea-rsa.princeton.rdhpcs.noaa.gov", "gaea-rsa.boulder.rdhpcs.noaa.gov"]
 
+## Orion Configuration 
+[orion]
+username = "bbaker"
+domains = ["orion-login.hpc.msstate.edu"]
+
+## Hercules Configuration
+[hercules]
+username = "bbaker"
+domains = ["hercules-login.hpc.msstate.edu"]
+
 ## Hopper Configuration
-[hpc_domains.hopper]
+[hopper]
 username = "bbaker25"
 domain = ["hopper.orc.gmu.edu"]
 
 ## Aaqest Configuration
-[hpc_domains.aaqest]
+[aaqest]
 username = "barryb"
 domain = ["aaqest.arl.noaa.gov"]
 
 ## Byun Configuration
-[hpc_domains.byun]
+[byun]
 username = "barryb"
 domain = ["byun.arl.noaa.gov"]
-
