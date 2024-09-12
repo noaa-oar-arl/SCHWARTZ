@@ -1,15 +1,15 @@
 [credential]
      helper = store --file ~/.git-credentials
 [credential "https://github.com"]
-    username = gitusername
+    username = {{ git.username }}
 [url "https://github.com/noaa-oar-arl/"]
     insteadof = ARL
-[url "https://github.com/gitusername/"]
+[url "https://github.com/{{ git.username }}/"]
     insteadof = MYGIT
 [url "https://github.com/noaa-emc/"]
     insteadof = EMC
 [url "https://github.com/ufs-community/"]
     insteadof = UFS
 [user]
-    name = gitusername
-    email = gitemial
+    name = {{git.username}}
+    email = {{git.email}}
