@@ -37,22 +37,28 @@ alias cleanup='rm out err PET* *~ \#* 2>/dev/null'
 alias ls='ls --color=force'
 
 # NOAA/NCEP Machines
-export RDHPCS_USER=Barry.Baker
-export MSU_USER=bbaker
-export HOPPER_USER=bbaker25
+export RDHPCS_USER={{ hera.username }}
+export MSU_USER={{ orion.username }}
+export HOPPER_USER={{ hopper.username }}
+export HERA_PORT={{ hera.port }}
+export GAEA_PORT={{ gaea.port }}
+export AAQEST_USER={{ aaqest.username }}
+export BYUN_USER={{ byun.username }}
 
 alias hera='ssh -Y ${RDHPCS_USER}@hera-rsa.princeton.rdhpcs.noaa.gov'
 alias herab='ssh -Y ${RDHPCS_USER}@hera-rsa.boulder.rdhpcs.noaa.gov'
-alias heratunnel='ssh -L65352:localhost:65352 -X ${RDHPCS_USER}@hera-rsa.princeton.rdhpcs.noaa.gov'
-alias herabtunnel='ssh -L65352:localhost:65352 -X ${RDHPCS_USER}@hera-rsa.boulder.rdhpcs.noaa.gov'
+alias heratunnel='ssh -L${HERA_PORT}:localhost:{HERA_PORT} -X ${RDHPCS_USER}@hera-rsa.princeton.rdhpcs.noaa.gov'
+alias herabtunnel='ssh -L{HERA_PORT}:localhost:{HERA_PORT} -X ${RDHPCS_USER}@hera-rsa.boulder.rdhpcs.noaa.gov'
 alias gaea='ssh -Y ${RDHPCS_USER}@gaea-rsa.princeton.rdhpcs.noaa.gov'
 alias gaeab='ssh -Y ${RDHPCS_USER}@gaea-rsa.boulder.rdhpcs.noaa.gov'
-alias gaeatunnel='ssh -L65352:localhost:65352 -X ${RDHPCS_USER}@gaea-rsa.princeton.rdhpcs.noaa.gov'
-alias gaeabtunnel='ssh -L65352:localhost:65352 -X ${RDHPCS_USER}@gaea-rsa.boulder.rdhpcs.noaa.gov'
+alias gaeatunnel='ssh -L${GAEA_PORT}:localhost:${GAEA_PORT} -X ${RDHPCS_USER}@gaea-rsa.princeton.rdhpcs.noaa.gov'
+alias gaeabtunnel='ssh -L${GAEA_PORT}:localhost:${GAEA_PORT} -X ${RDHPCS_USER}@gaea-rsa.boulder.rdhpcs.noaa.gov'
 alias niagara='ssh -Y ${RDHPCS_USER}@niagara-rsa.princeton.rdhpcs.noaa.gov'
 alias wcoss='ssh -Y ${RDHPCS_USER}@devbastion.ncep.noaa.gov'
 alias orion='ssh -Y ${MSU_USER}@orion-login.hpc.msstate.edu'
-
+alias hercules='ssh -Y ${MSU_USER}@hercules-login.hpc.msstate.edu'
+alias aaqest='ssh -Y ${AAQEST_USER}@aaqest.arl.noaa.gov'
+alias byun='ssh -Y ${AAQEST_USER}@byun.arl.noaa.gov'
 
 # shortcut to source
 alias so="source ~/.bash_profile"

@@ -1,6 +1,6 @@
 # Github configuration for NOAA machines (among others) 
 
-GITHUB_USERNAME=bbakernoaa
-GITHUB_EMAIL=barry.baker@noaa.gov
+GITHUB_USERNAME={{ git.username }}
+GITHUB_EMAIL={{ git.email }}
 
 

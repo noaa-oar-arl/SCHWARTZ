@@ -2,9 +2,7 @@ export PS1="\[\e[31m\]Hera(\h)\[\e[m\]:\[\e[32m\]\w\[\e[m\]\\$ "
 
 
 # ALIAS
-alias sq="squeue -u $USER"
 alias grep="grep --color"
-alias sq='squeue -u Barry.Baker'
 alias ls='ls --color=force'
 alias dir='ls -l \!*  | more'
 alias path='echo $path'
@@ -13,18 +11,17 @@ alias emacs='emacs -nw'
 alias emcas='emacs -nw'
 
 # Slurm Alias
-alias sq='squeue -u $USER'
-alias sc='scancel -u $USER'
+alias sq='squeue -u {{ hera.username }}'
+alias sc='scancel -u {{ hera.username }}'
 
-export PATH=/home/Cory.R.Martin/local/miniconda3/bin:$PATH:/home/Cory.R.Martin/local/bin
 # useful directory variable
-export ARL2_DIR=/scratch2/NAGAPE/arl/$USER
-export ARL3_DIR=/scratch3/NAGAPE/arl/$USER
-export NOSCRUB_DIR=/scratch1/NCEPDEV/naqfc/$USER
-export STMP1_DIR=/scratch2/NCEPDEV/stmp1/$USER
-export STMP2_DIR=/scratch1/NCEPDEV/stmp2/$USER
-export STMP3_DIR=/scratch2/NCEPDEV/stmp3/$USER
-export STMP4_DIR=/scratch1/NCEPDEV/stmp4/$USER
+export ARL2_DIR=/scratch2/NAGAPE/arl/{{ hera.username }}
+export ARL3_DIR=/scratch3/NAGAPE/arl/{{ hera.username }}
+export NOSCRUB_DIR=/scratch1/NCEPDEV/naqfc/{{ hera.username }}
+export STMP1_DIR=/scratch2/NCEPDEV/stmp1/{{ hera.username }}
+export STMP2_DIR=/scratch1/NCEPDEV/stmp2/{{ hera.username }}
+export STMP3_DIR=/scratch2/NCEPDEV/stmp3/{{ hera.username }}
+export STMP4_DIR=/scratch1/NCEPDEV/stmp4/{{ hera.username }}
 
 
 #Other tools 
