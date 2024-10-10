@@ -1,0 +1,6 @@
+# Github configuration for NOAA machines (among others) 
+
+GITHUB_USERNAME={{ git.username }}
+GITHUB_EMAIL={{ git.email }}
+
+

@@ -1,23 +1,40 @@
 export PS1="\[\e[31m\]Hera(\h)\[\e[m\]:\[\e[32m\]\w\[\e[m\]\\$ "
 
-alias qme="squeue -u Cory.R.Martin"
-alias jedienv="source $HOME/env/jedi_20210521.bash && module list && cat $HOME/env/jedi_20210521.bash"
 
-export PATH=/home/Cory.R.Martin/local/miniconda3/bin:$PATH:/home/Cory.R.Martin/local/bin
-#export PATH=/scratch4/NCEPDEV/da/save/Cory.R.Martin/nccmp/bin:$PATH
-export PATH=/home/Cory.R.Martin/local/python//bin:$PATH
-export PATH=/home/Cory.R.Martin/.local/bin:$PATH
+# ALIAS
+alias grep="grep --color"
+alias ls='ls --color=force'
+alias dir='ls -l \!*  | more'
+alias path='echo $path'
+alias h='history'
+alias emacs='emacs -nw'
+alias emcas='emacs -nw'
+
+# Slurm Alias
+alias sq='squeue -u {{ hera.username }}'
+alias sc='scancel -u {{ hera.username }}'
+
 # useful directory variable
-export NOSCRUB=/scratch1/NCEPDEV/da/Cory.R.Martin
-export STMP1=/scratch2/NCEPDEV/stmp1/Cory.R.Martin
-export STMP2=/scratch1/NCEPDEV/stmp2/Cory.R.Martin
-export STMP3=/scratch2/NCEPDEV/stmp3/Cory.R.Martin
-export STMP4=/scratch1/NCEPDEV/stmp4/Cory.R.Martin
-export GSI=$NOSCRUB/GSI
-export JEDI=$NOSCRUB/JEDI
-export SQUEUE_FORMAT="%.12i %.9P %.25j %.18u %.2t %.10M %.6D %.20R %q"
+export ARL2_DIR=/scratch2/NAGAPE/arl/{{ hera.username }}
+export ARL3_DIR=/scratch3/NAGAPE/arl/{{ hera.username }}
+export NOSCRUB_DIR=/scratch1/NCEPDEV/naqfc/{{ hera.username }}
+export STMP1_DIR=/scratch2/NCEPDEV/stmp1/{{ hera.username }}
+export STMP2_DIR=/scratch1/NCEPDEV/stmp2/{{ hera.username }}
+export STMP3_DIR=/scratch2/NCEPDEV/stmp3/{{ hera.username }}
+export STMP4_DIR=/scratch1/NCEPDEV/stmp4/{{ hera.username }}
 
-# dirctory aliases
-alias crmsave="cd $NOSCRUB"
-alias crmgsi="cd $GSI"
-alias crmjedi="cd $JEDI"
+
+#Other tools 
+export SQUEUE_FORMAT="%.12i %.9P %.25j %.18u %.2t %.10M %.6D %.20R %q"
+export NCVIEWBASE=${HOME}/tools/ncmaps
+export NCVIEWBASE=${HOME}/.ncmaps
+
+# directory aliases
+alias stmp1="pushd $STMP1_DIR"
+alias stmp2="pushd $STMP2_DIR"
+alias stmp3="pushd $STMP3_DIR"
+alias stmp4="pushd $STMP4_DIR"
+alias noscrub="pushd $NOSCRUB_DIR"
+alias arl2="pushd $ARL2_DIR"
+alias arl3="pushd $ARL3_DIR"
+

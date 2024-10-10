@@ -4,7 +4,6 @@ test -e "${HOME}/.bash_functions" && source "${HOME}/.bash_functions"
 
 ###############################################################
 # Set user-defined aliases
-
 # Aliases to make sure that the copy, move, and remove programs
 # ask you for confirmation. If you don't like this (i.e., if
 # you know what you're doing), delete these lines.
@@ -12,23 +11,54 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 
+# Grep color 
+alias grep="grep --color"
+
+# PATH and directory 
+alias dir='ls -l \!*  | more'
+alias path='echo $path'
+
+# history 
+alias h='history'
+
+# Editor aliases
+alias emacs='emacs -nw'
+alias emcas='emacs -nw'
+
 # Aliases to force cp, mv and rm without confirmation
 alias cpf='cp -f'
 alias mvf='mv -f'
 alias rmf='rm -f'
 
+# general cleanup of logs and tmp files 
+alias cleanup='rm out err PET* *~ \#* 2>/dev/null'
+
 # ls aliases
-alias ls='ls --color'
+alias ls='ls --color=force'
 
 # NOAA/NCEP Machines
-alias hera='ssh -Y Cory.R.Martin@hera-rsa.princeton.rdhpcs.noaa.gov'
-alias niagara='ssh -Y Cory.R.Martin@niagara-rsa.princeton.rdhpcs.noaa.gov'
-alias herab='ssh -Y Cory.R.Martin@hera-rsa.boulder.rdhpcs.noaa.gov'
-alias wcoss='ssh -Y Cory.R.Martin@devbastion.ncep.noaa.gov'
-alias emclw='ssh -Y cmartin@emc-lw7-cmartin.ncep.noaa.gov'
-alias heratunnel='ssh -L65352:localhost:65352 -X Cory.R.Martin@hera-rsa.princeton.rdhpcs.noaa.gov'
-alias orion='ssh -Y cmartin@orion-login.hpc.msstate.edu'
-alias rzdm='ssh cmartin@emcrzdm.ncep.noaa.gov'
+export RDHPCS_USER={{ hera.username }}
+export MSU_USER={{ orion.username }}
+export HOPPER_USER={{ hopper.username }}
+export HERA_PORT={{ hera.port }}
+export GAEA_PORT={{ gaea.port }}
+export AAQEST_USER={{ aaqest.username }}
+export BYUN_USER={{ byun.username }}
+
+alias hera='ssh -Y ${RDHPCS_USER}@hera-rsa.princeton.rdhpcs.noaa.gov'
+alias herab='ssh -Y ${RDHPCS_USER}@hera-rsa.boulder.rdhpcs.noaa.gov'
+alias heratunnel='ssh -L${HERA_PORT}:localhost:{HERA_PORT} -X ${RDHPCS_USER}@hera-rsa.princeton.rdhpcs.noaa.gov'
+alias herabtunnel='ssh -L{HERA_PORT}:localhost:{HERA_PORT} -X ${RDHPCS_USER}@hera-rsa.boulder.rdhpcs.noaa.gov'
+alias gaea='ssh -Y ${RDHPCS_USER}@gaea-rsa.princeton.rdhpcs.noaa.gov'
+alias gaeab='ssh -Y ${RDHPCS_USER}@gaea-rsa.boulder.rdhpcs.noaa.gov'
+alias gaeatunnel='ssh -L${GAEA_PORT}:localhost:${GAEA_PORT} -X ${RDHPCS_USER}@gaea-rsa.princeton.rdhpcs.noaa.gov'
+alias gaeabtunnel='ssh -L${GAEA_PORT}:localhost:${GAEA_PORT} -X ${RDHPCS_USER}@gaea-rsa.boulder.rdhpcs.noaa.gov'
+alias niagara='ssh -Y ${RDHPCS_USER}@niagara-rsa.princeton.rdhpcs.noaa.gov'
+alias wcoss='ssh -Y ${RDHPCS_USER}@devbastion.ncep.noaa.gov'
+alias orion='ssh -Y ${MSU_USER}@orion-login.hpc.msstate.edu'
+alias hercules='ssh -Y ${MSU_USER}@hercules-login.hpc.msstate.edu'
+alias aaqest='ssh -Y ${AAQEST_USER}@aaqest.arl.noaa.gov'
+alias byun='ssh -Y ${AAQEST_USER}@byun.arl.noaa.gov'
 
 # shortcut to source
 alias so="source ~/.bash_profile"

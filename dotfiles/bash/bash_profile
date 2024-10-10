@@ -2,7 +2,7 @@ shopt -s direxpand
 
 export EDITOR="vim"
 
-export REPLYTO="cory.r.martin@noaa.gov"
+export REPLYTO={{ user_info.email }}
 
 # things for Bash git prompt
 if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
