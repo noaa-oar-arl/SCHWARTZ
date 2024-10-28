@@ -144,6 +144,10 @@ def main() -> None:
 
         profile = profile + machine_profile
 
+        # write bash profile to $home/.bash_profile
+        with open(file=f"{home}/.bash_profile", mode="w", encoding='utf-8') as f:
+            f.write(profile)
+
         # check if .bash_profile is sourced in your ~/.bashrc file
         if not check_bash_profile_sourced():
             # add source .bash_priofile to ~/.bashrc
