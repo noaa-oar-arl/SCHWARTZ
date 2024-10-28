@@ -140,7 +140,7 @@ def main() -> None:
             "niagara": "niagara",
             "gaea": "gaea"
         }
-        machine_profile = render_template(template_path=f"bash/machines/{machine_templates.get(args.machine, '')}", context=config)
+        machine_profile = render_template(template_path=f"bash/machines/{machine_templates[args.machine]}", context=config)
 
         profile = profile + machine_profile
 
