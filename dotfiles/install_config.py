@@ -94,7 +94,7 @@ def main() -> None:
     """
     parser = argparse.ArgumentParser(description="Reads a TOML file and prints its contents.")
     parser.add_argument("-f", "--filename", help="The path to the TOML file", default="config.toml")
-    parser.add_argument("-m", "--machine", help="The machine in which use the template from", required=False)
+    parser.add_argument("-m", "--machine", help="The machine in which use the template from", required=True)
     parser.add_argument("-s", "--shell", help="shell on which to install | bash or powershell", required=False, default="bash")
     parser.add_argument("--install", help="Install the environment", action=argparse.BooleanOptionalAction, required=False, default=True)
     args = parser.parse_args()
@@ -148,6 +148,7 @@ def main() -> None:
         if not check_bash_profile_sourced():
             # add source .bash_priofile to ~/.bashrc
             with open(file=f"{home}/.bashrc", mode="a", encoding='utf-8') as f:
+                print("Adding a line to source the .bash_profile within your .bashrc file to make sure it's sourced")
                 f.write("\n" + f"source {home}/.bash_profile" + "\n")
 
     # Change Powershell profile
@@ -178,15 +179,6 @@ def main() -> None:
 
     # Add Machine specific git-credentials
     #=====================================
-    machine_templates = {
-        "hera": "hera",
-        "orion": "orion",
-        "hercules": "hercules",
-        "mac": "mac",
-        "wcoss": "wcoss",
-        "niagara": "niagara",
-        "gaea": "gaea"
-    }
     git_creds = render_template(template_path=f"git/machines/{machine_templates.get(args.machine, '')}", context=config)
 
     with open(file=f"{home}/.git-credentials", mode="w", encoding='utf-8') as f:
