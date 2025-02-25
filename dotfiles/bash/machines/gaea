@@ -1,0 +1,32 @@
+export PS1="\[\e[31m\]Hera(\h)\[\e[m\]:\[\e[32m\]\w\[\e[m\]\\$ "
+
+# ALIAS
+alias grep="grep --color"
+alias ls='ls --color=force'
+alias dir='ls -l \!*  | more'
+alias path='echo $path'
+alias h='history'
+alias emacs='emacs -nw'
+alias emcas='emacs -nw'
+
+# Slurm Alias
+alias sq='squeue -u {{ hera.username }}'
+alias sc='scancel -u {{ hera.username }}'
+
+# useful directory variable
+export ARL=/ncrc/proj/arl/{{ gaea.username }}
+export FIRE3=/ncrc/proj/bil-fire3/{{ gaea.username }}
+export F5=/gpfs/f6/bil-fire3/{{ gaea.username }}
+export F6=/gpfs/f6/bil-fire3/{{ gaea.username }}
+
+
+#Other tools 
+export SQUEUE_FORMAT="%.12i %.9P %.25j %.18u %.2t %.10M %.6D %.20R %q"
+export NCVIEWBASE=${HOME}/tools/ncmaps
+export NCVIEWBASE=${HOME}/.ncmaps
+
+# directory aliases
+alias arl="pushd $ARL"
+alias fire3="pushd $FIRE3"
+alias f5="pushd $F5"
+alias f6="pushd $F6"
