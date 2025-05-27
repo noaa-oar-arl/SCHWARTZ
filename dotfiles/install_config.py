@@ -160,11 +160,67 @@ def render_template(template_path: str, context: dict[str, Any]) -> str:
         match = re.search(r'{% if (.*?) %}(.*?){% endif %}', template_content, re.DOTALL)
         if not match:
             break
-        condition, block = match.groups()
-        if not isinstance(condition, str):
-            raise ValueError("Condition in if statement must be a string")
-        if not isinstance(block, str):
-            raise ValueError("Block in if statement must be a string")
+
+        condition_str, block = match.groups()
+        condition_str = condition_str.strip()
+
+        # Evaluate the condition based on the context
+        try:
+            # Handle nested dictionary access (e.g., bash.use_oh_my_bash)
+            if '.' in condition_str:
+                keys = condition_str.split('.')
+                value = context
+                for key in keys:
+                    value = value.get(key, False)
+                condition_result = bool(value)
+            else:
+                # Handle simple key access
+                condition_result = bool(context.get(condition_str, False))
+
+            # Replace the if statement with the appropriate content
+            if condition_result:
+                template_content = template_content.replace(match.group(0), block)
+            else:
+                template_content = template_content.replace(match.group(0), '')
+
+        except Exception as e:
+            logger = logging.getLogger()
+            logger.warning(f"Error evaluating condition '{condition_str}': {e}")
+            # If we can't evaluate the condition, remove the if block
+            template_content = template_content.replace(match.group(0), '')
+
+    # Handle else statements within if blocks
+    while True:
+        match = re.search(r'{% if (.*?) %}(.*?){% else %}(.*?){% endif %}', template_content, re.DOTALL)
+        if not match:
+            break
+
+        condition_str, if_block, else_block = match.groups()
+        condition_str = condition_str.strip()
+
+        try:
+            # Handle nested dictionary access (e.g., bash.use_oh_my_bash)
+            if '.' in condition_str:
+                keys = condition_str.split('.')
+                value = context
+                for key in keys:
+                    value = value.get(key, False)
+                condition_result = bool(value)
+            else:
+                # Handle simple key access
+                condition_result = bool(context.get(condition_str, False))
+
+            # Replace the if-else statement with the appropriate content
+            if condition_result:
+                template_content = template_content.replace(match.group(0), if_block)
+            else:
+                template_content = template_content.replace(match.group(0), else_block)
+
+        except Exception as e:
+            logger = logging.getLogger()
+            logger.warning(f"Error evaluating condition '{condition_str}': {e}")
+            # If we can't evaluate the condition, use the else block
+            template_content = template_content.replace(match.group(0), else_block)
 
     return template_content
 
