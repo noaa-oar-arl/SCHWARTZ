@@ -4,11 +4,27 @@ export EDITOR="vim"
 
 export REPLYTO={{ user_info.email }}
 
+{% if bash.use_oh_my_bash %}
+# Oh My Bash Configuration
+if [ -f "$HOME/.oh-my-bash/oh-my-bash.sh" ]; then
+    # Set Oh My Bash variables before loading
+    export OSH="$HOME/.oh-my-bash"
+    export OSH_THEME="{{ bash.oh_my_bash_theme }}"
+    export DISABLE_AUTO_UPDATE="true"
+
+    # Define plugins to load
+    plugins=({{ bash.oh_my_bash_plugins }})
+
+    # Load Oh My Bash
+    source "$HOME/.oh-my-bash/oh-my-bash.sh"
+fi
+{% else %}
 # things for Bash git prompt
 if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
     GIT_PROMPT_ONLY_IN_REPO=1
     source $HOME/.bash-git-prompt/gitprompt.sh
 fi
+{% endif %}
 
 # Add CWD(.) and $HOME/bin to path
 export PATH=".:$HOME/bin:$PATH"

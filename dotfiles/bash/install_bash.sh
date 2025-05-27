@@ -17,7 +17,9 @@ done
 [[ -f $HOME/.bash_site ]] && mv $HOME/.bash_site $HOME/.bash_site-$datestr
 cp machines/$machine $HOME/.bash_site
 
-# Grab git prompt for bash
-git clone https://github.com/magicmonty/bash-git-prompt $HOME/.bash-git-prompt
+# Grab git prompt for bash (will be used if Oh My Bash is not enabled)
+if [ ! -d "$HOME/.bash-git-prompt" ]; then
+  git clone https://github.com/magicmonty/bash-git-prompt $HOME/.bash-git-prompt
+fi
 
 exit 0

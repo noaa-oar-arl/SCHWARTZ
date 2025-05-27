@@ -23,6 +23,17 @@ byun = fake_key_for_byun
 
 Here the fake_key_for_byun is the key generated under your `github -> settings -> Developer Settings -> Personal Access Token`.  The username and email are your GitHub:tm: username and password.
 
+The next section allows you to configure Oh My Bash as an option:
+
+```toml
+[bash]
+use_oh_my_bash = false
+oh_my_bash_theme = "font"
+oh_my_bash_plugins = "git virtualenv python pyenv"
+```
+
+Set `use_oh_my_bash` to `true` to enable Oh My Bash. You can customize the theme and plugins according to your preferences. The auto-update feature for Oh My Bash is disabled by default to prevent unexpected updates. If Oh My Bash is not enabled, the system will use the default bash configuration with bash-git-prompt.
+
 The next section is to handle the email in which you will get reponses.
 
 Then come the machine specific settings including login information and port
@@ -47,6 +58,15 @@ options:
   --install, --no-install
                         Install the environment
 ```
+
+The `-m` or `--machine` argument is used to specify which machine-specific configuration to use. This will create a `.bash_site` file with the appropriate settings for that machine. Available options include:
+- hera
+- gaea
+- orion
+- mac
+- ursa
+
+If no machine is specified, no machine-specific configuration will be applied.
 
 ### Example --no-install
 

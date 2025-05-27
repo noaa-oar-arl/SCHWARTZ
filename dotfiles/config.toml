@@ -1,3 +1,11 @@
+# Bash Configuration
+# Set use_oh_my_bash to true to enable Oh My Bash
+# Auto-update is disabled by default to prevent unexpected updates
+[bash]
+use_oh_my_bash = false
+oh_my_bash_theme = "font"
+oh_my_bash_plugins = "git virtualenv python pyenv"
+
 [git]
 username = "bbakernoaa"
 email = "barry.baker@noaa.gov"
@@ -18,13 +26,18 @@ username = "Barry.Baker"
 port = 53612
 domain = ["hera-rsa.princeton.rdhpcs.noaa.gov", "hera-rsa.boulder.rdhpcs.noaa.gov"]
 
+[ursa]
+username = "Barry.Baker"
+port = 45642
+domain = ["ursa-rsa.princeton.rdhpcs.noaa.gov", "ursa-rsa.boulder.rdhpcs.noaa.gov"]
+
 ## Gaea Configuration
 [gaea]
 username = "Barry.Baker"
 port = 40642
 domain = ["gaea-rsa.princeton.rdhpcs.noaa.gov", "gaea-rsa.boulder.rdhpcs.noaa.gov"]
 
-## Orion Configuration 
+## Orion Configuration
 [orion]
 username = "bbaker"
 domains = ["orion-login.hpc.msstate.edu"]
@@ -48,3 +61,84 @@ domain = ["aaqest.arl.noaa.gov"]
 [byun]
 username = "barryb"
 domain = ["byun.arl.noaa.gov"]
+
+## NCMaps Configuration
+[ncmaps]
+source_dir = "ncmaps"
+dest_dir = ".ncmaps"
+ncviewrc_source = "ncmaps/ncviewrc_all"
+ncviewrc_dest = ".ncviewrc"
+
+## Colormap Activation Settings
+## Set to true to activate or false to deactivate
+[ncmaps.colormaps]
+acton = false
+algae = true
+amp = false
+balance = true
+bamako = false
+bam = false
+bamO = false
+batlowK = false
+batlow = false
+batlowW = false
+berlin = true
+bilbao = false
+broc = true
+brocO = false
+buda = false
+bukavu = false
+bwr = true
+cividis = true
+coolwarm = true
+cork = false
+corkO = false
+curl = false
+davos = true
+deep = true
+delta = false
+dense = false
+devon = false
+diff = true
+fes = false
+gray = true
+grayC = false
+haline = true
+hawaii = false
+ice = true
+imola = false
+inferno = true
+lajolla = true
+lapaz = false
+lisbon = false
+magma = true
+matter = false
+nuuk = false
+oleron = false
+oslo = false
+oxy = true
+phase = false
+PiYG = true
+plasma = true
+PRGn = true
+rain = true
+RdBu = true
+roma = false
+romaO = false
+solar = true
+speed = true
+tarn = false
+tempo = false
+thermal = true
+tofino = false
+tokyo = false
+topo = true
+turbid = true
+turku = false
+twilight = true
+twilight_shifted = true
+vanimo = false
+vik = false
+vikO = false
+viridis = true
+

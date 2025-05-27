@@ -1,0 +1,41 @@
+export PS1="\[\e[31m\]Hera(\h)\[\e[m\]:\[\e[32m\]\w\[\e[m\]\\$ "
+
+
+# ALIAS
+alias grep="grep --color"
+alias ls='ls --color=force'
+alias dir='ls -l \!*  | more'
+alias path='echo $path'
+alias h='history'
+alias emacs='emacs -nw'
+alias emcas='emacs -nw'
+
+# Slurm Alias
+alias sq='squeue -u {{ geaa.username }}'
+alias sc='scancel -u {{ geaa.username }}'
+
+# useful directory variable
+export ARL_DIR=/ncrc/proj/arl/{{ geaa.username }}
+export STMP1_DIR=/gpfs/f5/arl/scratch/{{ geaa.username }}
+export ARL_NCRC=/ncrc/proj/arl/{{ geaa.username }}
+export BIL_DIR=/gpfs/f6/bil-fire3/{{ geaa.username }}
+export NOSCRUB_DIR=/gpfs/f6/bil-fire3/{{ geaa.username }}
+export STMP1_DIR=/scratch2/NCEPDEV/stmp1/{{ geaa.username }}
+export STMP2_DIR=/scratch1/NCEPDEV/stmp2/{{ geaa.username }}
+export STMP3_DIR=/scratch2/NCEPDEV/stmp3/{{ geaa.username }}
+export STMP4_DIR=/scratch1/NCEPDEV/stmp4/{{ geaa.username }}
+
+
+#Other tools
+export SQUEUE_FORMAT="%.12i %.9P %.25j %.18u %.2t %.10M %.6D %.20R %q"
+export NCVIEWBASE=${HOME}/tools/ncmaps
+export NCVIEWBASE=${HOME}/.ncmaps
+
+# directory aliases
+alias stmp1="pushd $STMP1_DIR"
+alias stmp2="pushd $STMP2_DIR"
+alias stmp3="pushd $STMP3_DIR"
+alias stmp4="pushd $STMP4_DIR"
+alias noscrub="pushd $NOSCRUB_DIR"
+alias arl2="pushd $ARL2_DIR"
+alias arl3="pushd $ARL3_DIR"

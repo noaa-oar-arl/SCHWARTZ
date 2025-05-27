@@ -1,0 +1,15 @@
+# Default machine-specific settings
+# This file contains default settings for when no specific machine is specified
+
+# Example: Add machine-specific environment variables here
+# export MY_VARIABLE="value"
+
+# Example: Add machine-specific aliases here
+# alias my_command="command with options"
+
+# Example: Add machine-specific functions here
+# my_function() {
+#   echo "Function executed"
+# }
+
+# Include any other machine-specific settings below

@@ -11,14 +11,14 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 
-# Grep color 
+# Grep color
 alias grep="grep --color"
 
-# PATH and directory 
+# PATH and directory
 alias dir='ls -l \!*  | more'
 alias path='echo $path'
 
-# history 
+# history
 alias h='history'
 
 # Editor aliases
@@ -30,20 +30,21 @@ alias cpf='cp -f'
 alias mvf='mv -f'
 alias rmf='rm -f'
 
-# general cleanup of logs and tmp files 
+# general cleanup of logs and tmp files
 alias cleanup='rm out err PET* *~ \#* 2>/dev/null'
 
 # ls aliases
 alias ls='ls --color=force'
 
 # NOAA/NCEP Machines
-export RDHPCS_USER={{ hera.username }}
+export RDHPCS_USER={{ rdhpcs.username }}
 export MSU_USER={{ orion.username }}
 export HOPPER_USER={{ hopper.username }}
 export HERA_PORT={{ hera.port }}
 export GAEA_PORT={{ gaea.port }}
 export AAQEST_USER={{ aaqest.username }}
 export BYUN_USER={{ byun.username }}
+export URSA_USER={{ rdhpcs.username }}
 
 alias hera='ssh -Y ${RDHPCS_USER}@hera-rsa.princeton.rdhpcs.noaa.gov'
 alias herab='ssh -Y ${RDHPCS_USER}@hera-rsa.boulder.rdhpcs.noaa.gov'
@@ -59,6 +60,7 @@ alias orion='ssh -Y ${MSU_USER}@orion-login.hpc.msstate.edu'
 alias hercules='ssh -Y ${MSU_USER}@hercules-login.hpc.msstate.edu'
 alias aaqest='ssh -Y ${AAQEST_USER}@aaqest.arl.noaa.gov'
 alias byun='ssh -Y ${AAQEST_USER}@byun.arl.noaa.gov'
+alias ursa='ssh -Y ${URSA_USER}@ursa-rsa.princeton.rdhpcs.noaa.gov'
 
 # shortcut to source
 alias so="source ~/.bash_profile"
