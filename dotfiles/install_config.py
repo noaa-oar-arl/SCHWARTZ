@@ -288,6 +288,29 @@ def install_oh_my_bash() -> bool:
         return False
 
 
+def backup_and_write_file(file_path: str, content: str) -> None:
+    """
+    Backup existing file and write new content.
+
+    Args:
+        file_path (str): Full path to the file to write
+        content (str): Content to write to the file
+    """
+    logger = logging.getLogger()
+
+    # Create backup if file exists
+    if os.path.exists(file_path):
+        datestr = datetime.datetime.now().strftime("%Y%m%d")
+        backup_path = f"{file_path}-{datestr}"
+        logger.info(f"Backing up existing file {file_path} to {backup_path}")
+        shutil.copy2(file_path, backup_path)
+
+    # Write new content
+    logger.info(f"Writing content to {file_path}")
+    with open(file_path, 'w') as f:
+        f.write(content)
+
+
 def main() -> None:
     """
     Reads a TOML file and prints its contents.
@@ -355,43 +378,33 @@ def main() -> None:
 
     # Change bash aliases
     #====================
+    logger.info("Processing bash aliases")
     alias = render_template(template_path="bash/bash_aliases", context=config)
-
-    # write bash aliases to $home/.bash_aliases
-    with open(file=f"{home}/.bash_aliases", mode="a") as f:
-        f.write(alias)
+    backup_and_write_file(f"{home}/.bash_aliases", alias)
 
     # Change bash functions
     #======================
+    logger.info("Processing bash functions")
     functions = render_template(template_path="bash/bash_functions", context=config)
-
-    # write bash functions to $home/.bash_functions
-    with open(file=f"{home}/.bash_functions", mode="a") as f:
-        f.write(functions)
+    backup_and_write_file(f"{home}/.bash_functions", functions)
 
     # Change bash profile
     #====================
+    logger.info("Processing bash profile")
     profile = render_template(template_path="bash/bash_profile", context=config)
-
-    # write bash profile to $home/.bash_profile
-    with open(file=f"{home}/.bash_profile", mode="a") as f:
-        f.write(profile)
+    backup_and_write_file(f"{home}/.bash_profile", profile)
 
     # Change .gitconfig
     #==================
+    logger.info("Processing gitconfig")
     gitconfig = render_template(template_path="git/gitconfig", context=config)
-
-    # write .gitconfig to $home/.gitconfig
-    with open(file=f"{home}/.gitconfig", mode="a") as f:
-        f.write(gitconfig)
+    backup_and_write_file(f"{home}/.gitconfig", gitconfig)
 
     # Change github_profile
     #======================
+    logger.info("Processing github profile")
     github_profile = render_template(template_path="git/github_profile", context=config)
-
-    # write github_profile to $home/.gitconfig
-    with open(file=f"{home}/.github_profile", mode="a") as f:
-        f.write(github_profile)
+    backup_and_write_file(f"{home}/.github_profile", github_profile)
 
     # Install Oh My Bash if enabled in config
     bash_config = config.get('bash', {})
