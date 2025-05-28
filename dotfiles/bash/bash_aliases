@@ -64,3 +64,6 @@ alias ursa='ssh -Y ${URSA_USER}@ursa-rsa.princeton.rdhpcs.noaa.gov'
 
 # shortcut to source
 alias so="source ~/.bash_profile"
+
+# Custom aliases from config.toml
+{{ bash.custom_aliases }}

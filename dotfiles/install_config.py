@@ -366,6 +366,28 @@ def backup_and_write_file(file_path: str, content: str) -> None:
     with open(file_path, 'w') as f:
         f.write(content)
 
+def process_custom_aliases(config: dict) -> str:
+    """Process custom aliases from config and return them as alias statements.
+
+    Args:
+        config (dict): The configuration dictionary containing bash.aliases
+
+    Returns:
+        str: A string containing all alias statements
+    """
+    aliases_config = config.get('bash', {}).get('aliases', {})
+    if not aliases_config:
+        return ""
+
+    alias_lines = []
+    alias_lines.append("# Custom aliases from config.toml")
+
+    for alias_name, alias_command in aliases_config.items():
+        # Escape any quotes in the command
+        escaped_command = alias_command.replace('"', '\\"')
+        alias_lines.append(f'alias {alias_name}="{escaped_command}"')
+
+    return '\n'.join(alias_lines)
 
 def main() -> None:
     """
@@ -431,6 +453,13 @@ def main() -> None:
         logger.info(f"Installed ncmaps to {ncmaps_dest_dir}")
         logger.info(f"Created ncviewrc at {ncviewrc_dest}")
         return
+
+    # Process custom aliases and add them to config
+    #==============================================
+    custom_aliases = process_custom_aliases(config)
+    if 'bash' not in config:
+        config['bash'] = {}
+    config['bash']['custom_aliases'] = custom_aliases
 
     # Change bash aliases
     #====================

@@ -6,6 +6,17 @@ use_oh_my_bash = false
 oh_my_bash_theme = "font"
 oh_my_bash_plugins = "git virtualenv python pyenv"
 
+# Custom aliases - these will be added to your .bash_aliases file
+[bash.aliases]
+ll = "ls -alF"
+la = "ls -A"
+l = "ls -CF"
+grep = "grep --color=auto"
+fgrep = "fgrep --color=auto"
+egrep = "egrep --color=auto"
+# Add your custom aliases here following the pattern:
+# alias_name = "command"
+
 [git]
 username = "bbakernoaa"
 email = "barry.baker@noaa.gov"
