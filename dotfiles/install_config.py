@@ -380,8 +380,8 @@ def process_custom_aliases(config: dict) -> str:
         return ""
 
     alias_lines = []
-    alias_lines.append("# Custom aliases from config.toml")
-
+    # Don't include the title, as it's already in the template
+    
     for alias_name, alias_command in aliases_config.items():
         # Escape any quotes in the command
         escaped_command = alias_command.replace('"', '\\"')
@@ -402,6 +402,7 @@ def main() -> None:
     parser.add_argument("-f", "--filename", help="The path to the TOML file", default="config.toml")
     parser.add_argument("-m", "--machine", help="The machine in which use the template from", required=False)
     parser.add_argument("--install-ncmaps", help="Install ncmaps files", action="store_true")
+    parser.add_argument("--install-aliases", help="Install dotfiles with custom aliases", action="store_true")
     parser.add_argument("--log-level", help="Logging level (default: INFO)", choices=['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'], default='INFO')
     args = parser.parse_args()
 
@@ -452,101 +453,120 @@ def main() -> None:
 
         logger.info(f"Installed ncmaps to {ncmaps_dest_dir}")
         logger.info(f"Created ncviewrc at {ncviewrc_dest}")
-        return
+        # Don't return here - continue with dotfiles installation
 
-    # Process custom aliases and add them to config
-    #==============================================
-    custom_aliases = process_custom_aliases(config)
-    if 'bash' not in config:
-        config['bash'] = {}
-    config['bash']['custom_aliases'] = custom_aliases
+    # Install aliases/dotfiles if requested
+    if args.install_aliases:
+        logger.info("Installing dotfiles with custom aliases")
+        
+        # Process custom aliases and add them to config
+        #==============================================
+        custom_aliases = process_custom_aliases(config)
+        if 'bash' not in config:
+            config['bash'] = {}
+        config['bash']['custom_aliases'] = custom_aliases
 
-    # Change bash aliases
-    #====================
-    logger.info("Processing bash aliases")
-    alias = render_template(template_path="bash/bash_aliases", context=config)
-    backup_and_write_file(f"{home}/.bash_aliases", alias)
-
-    # Change bash functions
-    #======================
-    logger.info("Processing bash functions")
-    functions = render_template(template_path="bash/bash_functions", context=config)
-    backup_and_write_file(f"{home}/.bash_functions", functions)
-
-    # Change bash profile
-    #====================
-    logger.info("Processing bash profile")
-    profile = render_template(template_path="bash/bash_profile", context=config)
-    backup_and_write_file(f"{home}/.bash_profile", profile)
-
-    # Change .gitconfig
-    #==================
-    logger.info("Processing gitconfig")
-    gitconfig = render_template(template_path="git/gitconfig", context=config)
-    backup_and_write_file(f"{home}/.gitconfig", gitconfig)
-
-    # Change github_profile
-    #======================
-    logger.info("Processing github profile")
-    github_profile = render_template(template_path="git/github_profile", context=config)
-    backup_and_write_file(f"{home}/.github_profile", github_profile)
-
-    # Install Oh My Bash if enabled in config
-    bash_config = config.get('bash', {})
-    if bash_config.get('use_oh_my_bash', False):
-        logger.info("Oh My Bash is enabled in config, installing...")
-        oh_my_bash_installed = install_oh_my_bash()
-        if oh_my_bash_installed:
-            logger.info("Oh My Bash installed successfully")
+        # First install Oh My Bash if enabled in config
+        bash_config = config.get('bash', {})
+        if bash_config.get('use_oh_my_bash', False):
+            logger.info("Oh My Bash is enabled in config, installing first...")
+            oh_my_bash_installed = install_oh_my_bash()
+            if oh_my_bash_installed:
+                logger.info("Oh My Bash installed successfully")
+            else:
+                logger.warning("Failed to install Oh My Bash")
         else:
-            logger.warning("Failed to install Oh My Bash")
-    else:
-        logger.info("Oh My Bash is not enabled in config, skipping installation")
+            logger.info("Oh My Bash is not enabled in config, skipping installation")
 
-    # Install machine-specific configuration if a machine is specified
-    if args.machine:
-        logger.info(f"Installing machine-specific configuration for {args.machine}")
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        bash_dir = os.path.join(script_dir, 'bash')
-        install_bash_script = os.path.join(bash_dir, 'install_bash.sh')
+        # Change bash aliases
+        #====================
+        logger.info("Processing bash aliases")
+        alias = render_template(template_path="bash/bash_aliases", context=config)
+        backup_and_write_file(f"{home}/.bash_aliases", alias)
 
-        # Check if the specified machine configuration exists
-        machine_config = os.path.join(bash_dir, 'machines', args.machine)
-        if os.path.exists(machine_config):
-            try:
-                import subprocess
-                result = subprocess.run(f"bash {install_bash_script} {args.machine}",
-                                        shell=True, capture_output=True, text=True)
-                if result.returncode == 0:
+        # Change bash functions
+        #======================
+        logger.info("Processing bash functions")
+        functions = render_template(template_path="bash/bash_functions", context=config)
+        backup_and_write_file(f"{home}/.bash_functions", functions)
+
+        # Change bash profile
+        #====================
+        logger.info("Processing bash profile")
+        profile = render_template(template_path="bash/bash_profile", context=config)
+        backup_and_write_file(f"{home}/.bash_profile", profile)
+
+        # Change .gitconfig
+        #==================
+        logger.info("Processing gitconfig")
+        gitconfig = render_template(template_path="git/gitconfig", context=config)
+        backup_and_write_file(f"{home}/.gitconfig", gitconfig)
+
+        # Change github_profile
+        #======================
+        logger.info("Processing github profile")
+        github_profile = render_template(template_path="git/github_profile", context=config)
+        backup_and_write_file(f"{home}/.github_profile", github_profile)
+
+        # Install machine-specific configuration if a machine is specified
+        if args.machine:
+            logger.info(f"Installing machine-specific configuration for {args.machine}")
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            bash_dir = os.path.join(script_dir, 'bash')
+
+            # Check if the specified machine configuration exists
+            machine_config = os.path.join(bash_dir, 'machines', args.machine)
+            if os.path.exists(machine_config):
+                try:
+                    # Only install the machine-specific .bash_site file, not the other dotfiles
+                    # which have already been rendered and written by the Python script
+                    datestr = datetime.datetime.now().strftime("%Y%m%d")
+                    bash_site_path = os.path.join(home, '.bash_site')
+                    
+                    # Backup existing .bash_site if it exists
+                    if os.path.exists(bash_site_path):
+                        backup_path = f"{bash_site_path}-{datestr}"
+                        logger.info(f"Backing up existing .bash_site to {backup_path}")
+                        shutil.copy2(bash_site_path, backup_path)
+                    
+                    # Render the machine configuration template
+                    machine_content = render_template(template_path=f"bash/machines/{args.machine}", context=config)
+                    
+                    # Write the rendered machine configuration
+                    logger.info(f"Writing machine-specific configuration to {bash_site_path}")
+                    with open(bash_site_path, 'w') as f:
+                        f.write(machine_content)
+                    
                     logger.info(f"Successfully installed machine-specific configuration for {args.machine}")
-                else:
-                    logger.error(f"Failed to install machine-specific configuration: {result.stderr}")
-            except Exception as e:
-                logger.error(f"Error installing machine-specific configuration: {str(e)}")
+                except Exception as e:
+                    logger.error(f"Error installing machine-specific configuration: {str(e)}")
+            else:
+                logger.error(f"Machine configuration file for {args.machine} not found at {machine_config}")
         else:
-            logger.error(f"Machine configuration file for {args.machine} not found at {machine_config}")
-    else:
-        logger.info("No machine specified, using default configuration")
-        # Check if .bash_site exists
-        if not os.path.exists(os.path.join(home, '.bash_site')):
-            try:
-                script_dir = os.path.dirname(os.path.abspath(__file__))
-                bash_dir = os.path.join(script_dir, 'bash')
-                install_bash_script = os.path.join(bash_dir, 'install_bash.sh')
-                import subprocess
-                result = subprocess.run(f"bash {install_bash_script} default",
-                                      shell=True, capture_output=True, text=True)
-                if result.returncode == 0:
+            logger.info("No machine specified, using default configuration")
+            # Check if .bash_site exists
+            if not os.path.exists(os.path.join(home, '.bash_site')):
+                try:
+                    script_dir = os.path.dirname(os.path.abspath(__file__))
+                    # Render the default machine configuration template
+                    default_content = render_template(template_path="bash/machines/default", context=config)
+                    
+                    # Write the rendered default machine configuration
+                    bash_site_path = os.path.join(home, '.bash_site')
+                    logger.info(f"Writing default machine configuration to {bash_site_path}")
+                    with open(bash_site_path, 'w') as f:
+                        f.write(default_content)
+                    
                     logger.info("Successfully installed default machine configuration")
-                else:
-                    logger.error(f"Failed to install default machine configuration: {result.stderr}")
-            except Exception as e:
-                logger.error(f"Error installing default machine configuration: {str(e)}")
-                logger.info("Consider specifying a machine with -m option.")
+                except Exception as e:
+                    logger.error(f"Error installing default machine configuration: {str(e)}")
+                    logger.info("Consider specifying a machine with -m option.")
 
-    # Get the user's current selection in the active terminal.
-    if args.machine == "hera":
-        pass  # Add your hera-specific code here
+        # Get the user's current selection in the active terminal.
+        if args.machine == "hera":
+            pass  # Add your hera-specific code here
+
+        logger.info("Dotfiles installation with custom aliases completed successfully")
 
 
 if __name__ == "__main__":

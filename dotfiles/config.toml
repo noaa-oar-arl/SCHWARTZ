@@ -4,7 +4,8 @@
 [bash]
 use_oh_my_bash = false
 oh_my_bash_theme = "font"
-oh_my_bash_plugins = "git virtualenv python pyenv"
+# Only include plugins that actually exist in Oh My Bash
+oh_my_bash_plugins = "git pyenv"
 
 # Custom aliases - these will be added to your .bash_aliases file
 [bash.aliases]

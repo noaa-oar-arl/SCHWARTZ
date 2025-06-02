@@ -12,8 +12,14 @@ if [ -f "$HOME/.oh-my-bash/oh-my-bash.sh" ]; then
     export OSH_THEME="{{ bash.oh_my_bash_theme }}"
     export DISABLE_AUTO_UPDATE="true"
 
-    # Define plugins to load
-    plugins=({{ bash.oh_my_bash_plugins }})
+    # Define plugins to load - convert string to array format that Oh My Bash expects
+    # The plugins variable is used by Oh My Bash internally
+    completions=()
+    plugins=()
+    IFS=' ' read -r -a plugin_array <<< "{{ bash.oh_my_bash_plugins }}"
+    for plugin in "${plugin_array[@]}"; do
+        plugins+=("$plugin")
+    done
 
     # Load Oh My Bash
     source "$HOME/.oh-my-bash/oh-my-bash.sh"

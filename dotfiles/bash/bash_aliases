@@ -37,14 +37,14 @@ alias cleanup='rm out err PET* *~ \#* 2>/dev/null'
 alias ls='ls --color=force'
 
 # NOAA/NCEP Machines
-export RDHPCS_USER={{ rdhpcs.username }}
 export MSU_USER={{ orion.username }}
 export HOPPER_USER={{ hopper.username }}
 export HERA_PORT={{ hera.port }}
 export GAEA_PORT={{ gaea.port }}
 export AAQEST_USER={{ aaqest.username }}
 export BYUN_USER={{ byun.username }}
-export URSA_USER={{ rdhpcs.username }}
+export URSA_USER={{ ursa.username }}
+export RDHPCS_USER={{ ursa.username }}
 
 alias hera='ssh -Y ${RDHPCS_USER}@hera-rsa.princeton.rdhpcs.noaa.gov'
 alias herab='ssh -Y ${RDHPCS_USER}@hera-rsa.boulder.rdhpcs.noaa.gov'
